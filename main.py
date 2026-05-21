@@ -50,7 +50,7 @@ def load_dataset(path: Path) -> List[Dict[str, Any]]:
     """
     with open(path, "r", encoding="utf-8") as f:
         docs: List[Dict[str, Any]] = json.load(f)
-    print(f"✅  Loaded {len(docs)} documents from {path.name}")
+    print(f"Loaded {len(docs)} documents from {path.name}")
     return docs
 
 
@@ -77,7 +77,7 @@ def main() -> None:
     print(f"   Embedding matrix shape: {doc_embeddings.shape}")
 
     # 3. Build FAISS index ---------------------------------------------
-    print("🔄  Building FAISS vector index…")
+    print("Building FAISS vector index…")
     vector_store = FAISSVectorStore(dimension=embedding_service.embedding_dim)
     vector_store.add_embeddings(
         embeddings=doc_embeddings,
@@ -109,10 +109,10 @@ def main() -> None:
 
     # 6. Save results --------------------------------------------------
     benchmark.save_json(RESULTS_PATH)
-    print(f"📄  JSON results saved to {RESULTS_PATH.name}")
+    print(f" JSON results saved to {RESULTS_PATH.name}")
 
     benchmark.save_report(REPORT_PATH)
-    print(f"📄  Markdown report saved to {REPORT_PATH.name}")
+    print(f"  Markdown report saved to {REPORT_PATH.name}")
     print()
 
     # 7. Print readable report -----------------------------------------
@@ -123,7 +123,7 @@ def main() -> None:
     print(benchmark.generate_report())
 
     print("=" * 64)
-    print("  ✅  Pipeline complete.")
+    print("  Pipeline complete.")
     print("=" * 64)
 
 
